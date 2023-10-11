@@ -72,5 +72,10 @@ function resetGame() {
     winnerText.textContent = '';
 }
 
+playerSelect.addEventListener('change', () => {
+    gameBoard.currentPlayer = playerSelect.value;
+    resetGame();
+});
+
 newGameButton.addEventListener('click', resetGame);
 resetGame();
