@@ -8,6 +8,7 @@ body {
     grid-template-columns: repeat(3, 100px);
     grid-gap: 1px;
     margin: 20px auto;
+    justify-content: center;
 }
 
 .cell {
@@ -23,4 +24,9 @@ body {
 
 .cell:hover {
     background-color: #ddd;
+}
+
+#winner {
+    font-size: 24px;
+    font-weight: 700;
 }
