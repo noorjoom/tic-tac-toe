@@ -1,6 +1,7 @@
 const gameBoard = {
     cells: Array(9).fill(null),
-    currentPlayer: 'X', // Initialize with 'X' as the starting player
+
+    currentPlayer: "O", // Initialize with 'X' as the starting player
 
     makeMove: function(index) {
         if (this.cells[index] === null) {
@@ -44,19 +45,32 @@ const cells = document.querySelectorAll('.cell');
 cells.forEach((cell, index) => {
     cell.addEventListener('click', () => {
         if (!gameBoard.makeMove(index)) {
-            alert('Invalid move');
             return;
         }
 
         cell.textContent = gameBoard.currentPlayer;
 
         if (gameBoard.checkForWin(gameBoard.currentPlayer)) {
-            alert(`Player ${gameBoard.currentPlayer} wins!`);
+            winnerText.textContent = `Player ${gameBoard.currentPlayer} wins!`;
             return;
         } else if (gameBoard.isFull()) {
-            alert("It's a draw!");
+            winnerText.textContent = "It's a draw!";
         }
 
         gameBoard.togglePlayer(); // Toggle the player after each valid move
     });
 });
+
+const playerSelect = document.getElementById('player-select');
+const newGameButton = document.getElementById('new-game');
+const winnerText = document.getElementById('winner');
+
+function resetGame() {
+    gameBoard.cells.fill(null);
+    cells.forEach(cell => (cell.textContent = ''));
+    gameBoard.currentPlayer = playerSelect.value;
+    winnerText.textContent = '';
+}
+
+newGameButton.addEventListener('click', resetGame);
+resetGame();
